@@ -114,26 +114,26 @@ window.URL = window.URL || window.webkitURL;
         rtc._socket = new WebSocket(server);
         //after socket is opened
         rtc._socket.onopen = function() {
-            //ws on mesessage event 
-            rtc._socket.onmessage = function(msg) {
-                var json = JSON.parse(msg.data);
-                console.log("RECEIVED MESSAGE " + json.type);
-                console.log(json);
-                //fire proper event callback
-                rtc.fire(json.type, json.data);
-            };
-            //ws error
-            rtc._socket.onerror = function(err) {
-                console.log('onerror');
-                console.log(err);
-                rtc.fire('socket_error', err);
-            };
-            //close our socket
-            rtc._socket.onclose = function(data) {
-                //fire external event
-                rtc.fire('socket_closed', {});
-            };
             rtc.fire('connected');            
+        };
+        //ws on mesessage event 
+        rtc._socket.onmessage = function(msg) {
+            var json = JSON.parse(msg.data);
+            console.log("RECEIVED MESSAGE " + json.type);
+            console.log(json);
+            //fire proper event callback
+            rtc.fire(json.type, json.data);
+        };
+        //ws error
+        rtc._socket.onerror = function(err) {
+            console.log('onerror');
+            console.log(err);
+            rtc.fire('socket_error', err);
+        };
+        //close our socket
+        rtc._socket.onclose = function(data) {
+            //fire external event
+            rtc.fire('socket_closed', {});
         };
     };
     
