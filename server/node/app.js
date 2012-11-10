@@ -17,8 +17,8 @@ var server = http.createServer(function(request, response) {
     // process HTTP request. Since we're writing just WebSockets server
     // we don't have to implement anything.
     });
-server.listen(1337, function() {
-    console.log((new Date()) + " Server is listening on port 1337");
+server.listen(8080, function() {
+    console.log((new Date()) + " Server is listening on port 8080");
 });
 
 // create the server
