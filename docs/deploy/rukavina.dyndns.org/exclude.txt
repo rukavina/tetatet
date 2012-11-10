@@ -1,0 +1,8 @@
+.svn
+/docs
+/library/Zend
+/tests
+/tmp/*
+/logs/*
+/cache/*
+

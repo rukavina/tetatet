@@ -1,0 +1,19 @@
+#compatibilityPanel{
+    display: none;
+}
+
+#compatibilityPanel .feature{
+    display: none;
+}
+
+#callPanel{
+    display: block;
+}
+
+#remoteVideo{
+    width: 100%;
+}
+
+#localVideo{
+    width: 100%;
+}

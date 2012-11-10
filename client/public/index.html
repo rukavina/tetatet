@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TetATet</title>       
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap.min.css"  media="screen">        
+    </head>
+    <body>
+        <div class="page-header">
+            <h1>TetATet <small>WebRTC video chat</small></h1>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <!-- LOGIN BUTTONS -->
+                    <div id="loginPanel">
+                        <button id="fbLogin" class="btn btn-primary btn-large btn-block">Facebook Login</button>
+                        <button id="gLogin" class="btn btn-primary btn-large btn-block">Google Login</button>
+                    </div>
+                    <!-- FRIENDS -->
+                    <table class="connectionsTable table table-hover">
+                        <tbody id="connections">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="span9">
+                    <div id="compatibilityPanel" class="alert alert-error">
+                        <h4>Error</h4>
+                        <p class="feature websocket">Your browser does not support websocket.</p>
+                        <p class="feature peerconnection">Your browser does not support PeerConnections.</p>
+                        <p class="feature usermedia">Your browser does not support user media.</p>
+                    </div>
+                    <div id="callPanel" class="row-fluid">
+                        <div class="span10"><video id="remoteVideo" autoplay="autoplay" class="img-polaroid"></video></div>
+                        <div class="span2"><video id="localVideo" autoplay="autoplay" class="img-polaroid"></video></div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        <script src="js/vendor/jquery-1.7.1.min.js"></script>
+        <script src="js/vendor/microtpl.js"></script>
+        <script src="js/webrtc.js"></script>
+        <script src="js/login/facebook.js"></script>
+        <script src="js/login/google.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=gCheckAuth"></script>        
+        <script src="js/front.js"></script> 
+        <!-- friends list template -->
+        <script type="text/html" id="connectionsTpl">
+        <% for ( var id in rows){
+        var userData = rows[id].data.userData;
+        %>
+            <tr id="connection_<%=id%>">
+                <td><img src="<%=userData.image%>" alt="" style="height: 40px"/></td>
+                <td><%=userData.name%></td>
+                <td id="callCell_<%=id%>">
+                    <div class="callStatus">
+                        <span class="status idle">&nbsp;</span>
+                        <button class="cmdBtn idle call btn btn-success">Call</button>
+
+                        <span class="status called label label-important">Ringing...</span>
+                        <button class="cmdBtn called answer btn btn-success">Answer</button>
+
+                        <span class="status calling label">Calling...</span>
+                        <button class="cmdBtn calling drop btn btn-danger">Cancel</button>                            
+
+                        <span class="status talk label">In call</span>
+                        <button class="cmdBtn talk drop btn btn-danger">Hang Up</button>
+                    </div>
+                </td>
+            </tr>
+        <% } %>
+        </script>    
+    </body>
+</html>
