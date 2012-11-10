@@ -1,4 +1,14 @@
-//CLIENT
+/**
+ * TetATet - client side, RTC logic encapsulation - generic logic
+ * 
+ * based on https://github.com/webRTC/webrtc.io-client
+ *
+ * @author Milan Rukavina rukavinamilan@gmail.com
+ *
+ *
+ */
+//UPDATE this var
+var wsURL = 'ws://tetatet.eu01.aws.af.cm:1337';
 
 // Fallbacks for vendor-specific variables until the spec is finalized.
 window.RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;

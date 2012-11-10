@@ -1,3 +1,12 @@
+/**
+ * TetATet - client side, google login
+ * NOTE - update with your google app clientId
+ *
+ * @author Milan Rukavina rukavinamilan@gmail.com
+ *
+ *
+ */
+
 // Enter a client ID for a web application from the Google Developer Console.
 // The provided clientId will only work if the sample is run directly from
 // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html

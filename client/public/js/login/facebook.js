@@ -1,3 +1,12 @@
+/**
+ * TetATet - client side, facebook login
+ * NOTE - update with your fb appId
+ *
+ * @author Milan Rukavina rukavinamilan@gmail.com
+ *
+ *
+ */
+
 //login to FB
 function fbLogin() {
     FB.login(function(response) {
@@ -20,7 +29,7 @@ function fbConnect(){
 // Additional JS functions here
 window.fbAsyncInit = function() {
     FB.init({
-        appId      : '521555617857525', // App ID
+        appId      : '521555617857525', // App ID - update this!
         //channelUrl : '//webrtc.local/websocket/channel.html', // Channel File
         status     : true, // check login status
         cookie     : true, // enable cookies to allow the server to access the session

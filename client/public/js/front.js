@@ -1,8 +1,18 @@
-           
+/**
+ * TetATet - client side, presentation layer javascript
+ *
+ *
+ * @author Milan Rukavina rukavinamilan@gmail.com
+ *
+ *
+ */
+//UPDATE this var
+var wsURL = 'ws://tetatet.eu01.aws.af.cm:1337';
+
 //connect to ws server
 function nodeLogin(userInfo){
     console.log(userInfo);
-    rtc.connect('ws://rukavina.dyndns.biz:1337');
+    rtc.connect(wsURL);
     rtc.on('connected', function(){
         rtc.login(userInfo);
     });               

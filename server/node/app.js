@@ -1,3 +1,13 @@
+/**
+ * TetATet - NODE.js server side call signaling part
+ * 
+ * NOTE - no real login is implemented - should read auth info on the server side
+ * TODO - protect request from valid origins - sarch for TODO in source
+ *
+ * @author Milan Rukavina rukavinamilan@gmail.com
+ *
+ *
+ */
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 var connections = {};
@@ -16,10 +26,16 @@ wsServer = new WebSocketServer({
     httpServer: server
 });
 
+/**
+ * Error callback
+ */
 function sendCallback(err) {
     if (err) console.error("send() error: " + err);
 }
 
+/**
+ * Broadcast message for all but sender
+ */
 function broadcast(utf8Data,senderId) {
     // broadcast message to all connected clients
     for(var id in connections){
@@ -29,6 +45,9 @@ function broadcast(utf8Data,senderId) {
     }
 }
 
+/**
+ * Generate random connection ID
+ */
 function generateConnectionId(){
     var S4 = function (){
         return Math.floor(
@@ -39,6 +58,9 @@ function generateConnectionId(){
     return (S4() + S4());
 }
 
+/**
+ * Make common user info structure from google or facebook login info
+ */
 function adaptUserInfo(provider,data){
     var userInfo = {
         'id':null,
@@ -79,10 +101,12 @@ function adaptUserInfo(provider,data){
 // tries to connect to the WebSocket server
 wsServer.on('request', function(request) {
     console.log((new Date()) + ' Connection from origin ' + request.origin + '.');
+    //TODO: protected origin here
     var connection = request.accept(null, request.origin);
     console.log(' Connection ' + connection.remoteAddress);
     //console.log(connection);    
     
+    //current connection id
     var connectionId = null;
     
     // This is the most important callback for us, we'll handle
@@ -156,7 +180,7 @@ wsServer.on('request', function(request) {
         }
     });   
     
-    
+    //client closes
     connection.on('close', function() {
         // close user connection
         console.log((new Date()) + " Peer disconnected., connectionId",connectionId);
