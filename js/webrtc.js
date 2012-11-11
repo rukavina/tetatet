@@ -7,9 +7,6 @@
  *
  *
  */
-//UPDATE this var
-var wsURL = 'ws://tetatet.eu01.aws.af.cm:1337';
-
 // Fallbacks for vendor-specific variables until the spec is finalized.
 window.RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
 window.PeerConnection = window.webkitPeerConnection00;
@@ -204,7 +201,7 @@ window.URL = window.URL || window.webkitURL;
         }        
         var pc = rtc.connections[data.connectionId].pc;
         if(rtc.isRTCPeerConnection){
-            pc.addIceCandidate(new RTCIceCandidate(data.candidate));            
+            pc.addIceCandidate(new RTCIceCandidate({sdpMLineIndex:data.label, candidate:data.candidate}));            
         }
         else{
             console.log("processing ice candidate");
