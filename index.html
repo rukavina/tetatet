@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TetATet</title>       
+        <title>TetATet</title>
+        <meta property="og:title" content="TetATet WebRTC video chat" />
+        <meta property="og:type" content="non_profit" />
+        <meta property="og:url" content="http://rukavina.github.com/tetatet" />
+        <meta property="og:image" content="http://rukavina.github.com/tetatet/images/webrtc.png" />
+        <meta property="og:site_name" content="TetATet Github" />
+        <meta property="fb:admins" content="802500293" />        
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap.min.css"  media="screen">        
     </head>
@@ -9,6 +15,9 @@
         <div class="page-header">
             <h1>TetATet <small>WebRTC video chat</small></h1>
             <p>Invite your friend to open the same URL using Chrome >= 23 or open the same page from a new tab and call yourself, lonely :(</p>
+            <iframe src="http://ghbtns.com/github-btn.html?user=rukavina&repo=tetatet&type=watch" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+            <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+            <div class="fb-like" data-href="http://rukavina.github.com/tetatet" data-send="true" data-width="450" data-show-faces="true"></div>            
         </div>
         <div class="container-fluid">
             <div class="row-fluid">
@@ -23,6 +32,11 @@
                         <tbody id="connections">
                         </tbody>
                     </table>
+                    <!-- INVITE -->
+                    <div id="invite" style="display: none">
+                        <div class="g-plusone" data-annotation="inline" data-width="100"></div>
+                        <div class="fb-send" data-href="http://rukavina.github.com/tetatet"></div>                        
+                    </div>
                 </div>
                 <div class="span9">
                     <div id="compatibilityPanel" class="alert alert-error">
@@ -47,8 +61,9 @@
         <script src="js/front.js"></script> 
         <!-- friends list template -->
         <script type="text/html" id="connectionsTpl">
-        <% for ( var id in rows){
-        var userData = rows[id].data.userData;
+        <% if(rows && rows.length > 0){
+            for ( var id in rows){
+            var userData = rows[id].data.userData;
         %>
             <tr id="connection_<%=id%>">
                 <td><img src="<%=userData.image%>" alt="" style="height: 40px"/></td>
@@ -69,7 +84,23 @@
                     </div>
                 </td>
             </tr>
-        <% } %>
-        </script>    
+        <% 
+            }
+        } else{ %>
+            <tr>
+                <td colspan="3">
+                    <p>Oops...no one in here. Invite someone to join</p>
+                </td>
+            </tr>         
+        <% $("#invite").show();
+        } %>
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>        
     </body>
 </html>
