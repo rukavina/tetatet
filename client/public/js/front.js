@@ -7,7 +7,7 @@
  *
  */
 //UPDATE this var
-var wsURL = 'ws://tetatet-rukavina.dotcloud.com';
+var wsURL = 'ws://tetatet-rukavina.dotcloud.com:8080';
 
 //connect to ws server
 function nodeLogin(userInfo){
