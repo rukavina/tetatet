@@ -62,7 +62,7 @@
         <script src="js/front.js"></script> 
         <!-- friends list template -->
         <script type="text/html" id="connectionsTpl">
-        <% if(rows && rows.length > 0){
+        <% if(rows && !$.isEmptyObject(rows)){
             for ( var id in rows){
             var userData = rows[id].data.userData;
         %>
