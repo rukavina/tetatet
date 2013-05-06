@@ -8,8 +8,8 @@
  *
  */
 // Fallbacks for vendor-specific variables until the spec is finalized.
-window.RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
-window.PeerConnection = window.webkitPeerConnection00;
+window.RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+window.PeerConnection = (window.PeerConnection || window.webkitPeerConnection00 );
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 window.URL = window.URL || window.webkitURL;
 
@@ -57,7 +57,7 @@ window.URL = window.URL || window.webkitURL;
         }]
     };
     
-    rtc.mediaConstraints = {'has_audio':true, 'has_video':true};
+    rtc.mediaConstraints = null//{audio:true,video:true};
 
     // Array of known peer socket ids
     /**
@@ -297,7 +297,7 @@ window.URL = window.URL || window.webkitURL;
                         "sdp": sessionDescription
                     }
                 });
-            }, null, rtc.mediaConstraints);
+            }, function(error){},rtc.mediaConstraints);
         }
         else{
             var offer = pc.createOffer(rtc.mediaConstraints);
@@ -329,7 +329,7 @@ window.URL = window.URL || window.webkitURL;
                         "sdp": sessionDescription
                     }
                 });
-            }, null, rtc.mediaConstraints);                
+            }, function(error){},rtc.mediaConstraints);                
         }
         else{
             console.log("Setting remote description");
