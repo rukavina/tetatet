@@ -2,11 +2,15 @@
   "name": "tetatet",
   "version": "0.1.0",
   "scripts": {
-    "start" : "node app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies":{
-      "websocket" : ""
+  "dependencies": {
+    "websocket": ""
   },
-  "author": "milan rukavina"
+  "author": "milan rukavina",
+  "subdomain": "rukavina-node",
+  "engines": {
+    "node": "0.8.x"
+  }
 }

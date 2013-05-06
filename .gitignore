@@ -1,1 +1,3 @@
 /server/node/.dotcloud/
+/server/node/node_modules/websocket/build/Release/.deps/
+/server/node/node_modules/
